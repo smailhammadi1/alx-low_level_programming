@@ -25,10 +25,6 @@ password[length] = '\0';
  * 
  * Return: 1 if the password is valid, 0 otherwise.
  */
-int is_valid_password(const char *password)
-{
-return 0;
-}
 
 int main()
 {
