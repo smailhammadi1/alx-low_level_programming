@@ -27,11 +27,12 @@ return charset[index];
 
 int main(void)
 {
+int i;
 srand(time(NULL));
 
-char password[PASSWORD_LENGTH + 1];
+char *password;
 
-for (int i = 0; i < PASSWORD_LENGTH; i++)
+for (i = 0; i < PASSWORD_LENGTH; i++)
 {
 password[i] = generate_random_character();
 }
