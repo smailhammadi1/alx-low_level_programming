@@ -3,38 +3,48 @@
 #include <time.h>
 
 /**
- * main - Generates a random valid password.
- *
- * Return: 0 on success.
+ * generate_random_password - Generates a random password of the given length.
+ * @password: Pointer to the password buffer.
+ * @length: Length of the password to generate.
  */
-int main(void)
+void generate_random_password(char *password, int length)
 {
-char password[12];
-int i, sum, rand_char;
-srand(time(0));
-for (i = 0; i < 11; i++)
+static const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+int i;
+for (i = 0; i < length; i++)
 {
-rand_char = rand() % 62;
-if (rand_char < 26)
-{
-password[i] = 'A' + rand_char;
+int index = rand() % (sizeof(charset) - 1);
+password[i] = charset[index];
 }
-else if (rand_char < 52)
+password[length] = '\0';
+}
+
+/**
+ * is_valid_password - Checks if a password is valid for "101-crackme."
+ * @password: The password to validate.
+ * 
+ * Return: 1 if the password is valid, 0 otherwise.
+ */
+int is_valid_password(const char *password)
 {
-password[i] = 'a' + (rand_char - 26);
+return 0;
 }
-else
+
+int main()
 {
-password[i] = '0' + (rand_char - 52);
-}
-}
-sum = 0;
-for (i = 0; i < 11; i++)
+srand((unsigned int)time(NULL));
+
+char password[9];
+
+while (1)
 {
-sum += password[i];
+generate_random_password(password, 8);
+
+if (is_valid_password(password))
+{
+printf("Found valid password: %s\n", password);
+break;
 }
-password[11] = 2772 - sum;
-password[12] = '\0';
-printf("%s", password);
+}
 return (0);
 }
