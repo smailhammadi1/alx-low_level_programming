@@ -2,44 +2,39 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define PASSWORD_LENGTH 12
-
 /**
- * is_valid_password - Checks if a password is valid for "101-crackme."
- * @password: The password to validate.
- * 
- * Return: 1 if the password is valid, 0 otherwise.
+ * main - Generates a random valid password.
+ *
+ * Return: 0 on success.
  */
-
-char generate_random_character()
-{
-const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-int index = rand() % (sizeof(charset) - 1);
-return charset[index];
-}
-
-/**
- * is_valid_password - Checks if a password is valid for "101-crackme."
- * @password: The password to validate.
- * 
- * Return: 1 if the password is valid, 0 otherwise.
- */
-
 int main(void)
 {
-int i;
-srand(time(NULL));
-
-char *password;
-
-for (i = 0; i < PASSWORD_LENGTH; i++)
+char password[12];
+int i, sum, rand_char;
+srand(time(0));
+for (i = 0; i < 11; i++)
 {
-password[i] = generate_random_character();
+rand_char = rand() % 62;
+if (rand_char < 26)
+{
+password[i] = 'A' + rand_char;
 }
-
-password[PASSWORD_LENGTH] = '\0';
-
-printf("%s\n", password);
-
+else if (rand_char < 52)
+{
+password[i] = 'a' + (rand_char - 26);
+}
+else
+{
+password[i] = '0' + (rand_char - 52);
+}
+}
+sum = 0;
+for (i = 0; i < 11; i++)
+{
+sum += password[i];
+}
+password[11] = 2772 - sum;
+password[12] = '\0';
+printf("%s", password);
 return (0);
 }
