@@ -1,7 +1,6 @@
 /**
- * string_toupper - Converts all lowercase letters in a string to uppercase
+ * string_toupper - Convetters in a string to uppercase
  * @str: The input string
- *
  * Return: A pointer to the resulting string
  */
 
@@ -12,5 +11,5 @@ for (i = 0; i < n; i++)
 {
 s[i] = b;
 }
-return s;
+return (s);
 }
