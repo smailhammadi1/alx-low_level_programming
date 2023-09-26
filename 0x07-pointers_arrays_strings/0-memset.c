@@ -1,6 +1,6 @@
 /**
  * string_toupper - Convetters in a string to uppercase
- * @str: The input string
+ *
  * Return: A pointer to the resulting string
  */
 
